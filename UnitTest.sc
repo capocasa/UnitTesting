@@ -5,7 +5,12 @@ UnitTest {
 	var currentMethod;
 	classvar <failures, <passes, routine, <>reportPasses = true;
 	classvar <allTestClasses;
-	
+	classvar <>clock;
+
+  *initClass {
+    clock = AppClock;
+  }
+
 	*findTestClasses {
 		allTestClasses = UnitTest.allSubclasses.collectAs({ |c|
 				var classkey = c.asString[4..]; // drop Meta_
@@ -317,7 +322,7 @@ UnitTest {
 		if(thisThread.isKindOf(Routine)) { // we are inside the Routine already
 			function.value
 		} {
-			Routine(function).play(AppClock)
+			Routine(function).play(clock)
 		}
 	}
 	
@@ -486,7 +491,7 @@ UnitTestScript : UnitTest {
 			allScripts.do { |testScript|
 				this.runTestMethod(testScript)
 			}
-		}.play(AppClock);
+		}.play(clock);
 	}
 
 }
