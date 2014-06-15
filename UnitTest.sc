@@ -61,8 +61,8 @@ UnitTest {
 		var function;
 		("RUNNING UNIT TEST" + this.class.name ++ ":" ++ method.name).inform;
 		this.class.forkIfNeeded {
-			this.setUp;
 			currentMethod = method;
+			this.setUp;
 			this.perform(method.name);
 			this.tearDown;
 			this.class.report;
@@ -295,8 +295,8 @@ UnitTest {
 		if(report) { ("RUNNING UNIT TEST" + this).inform };
 		this.class.forkIfNeeded {
 			this.findTestMethods.do { |method|
-				this.setUp;
 				currentMethod = method;
+				this.setUp;
 				//{
 					this.perform(method.name);
 				// unfortunately this removes the interesting part of the call stack
